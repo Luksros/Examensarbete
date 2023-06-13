@@ -1,0 +1,128 @@
+﻿@using Examensarbete.ViewModels
+
+@model UserWithSettings
+
+<style>
+    .outerContainer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #bcbcbc;
+        height: 94.5vh
+    }
+
+    .menuContainer {
+        display: flex;
+        height: 90vh;
+        margin: 1rem;
+        border: 1px solid #e0e0e0;
+        width: 90vw;
+        max-width: 1080px;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .sideMenuContainer {
+        display: block;
+        height: 100%;
+        border-right: 1px solid #e0e0e0;
+    }
+
+    .usernameContainer {
+        padding: 0.8rem;
+        border-bottom: 2px solid #e0e0e0;
+        background-color: #f5f5f5;
+        border-radius: 6px 0 0 0;
+        color: #333333;
+    }
+
+    .username {
+        font-size: 1.3rem;
+        margin-left: 1rem;
+        color: #333333;
+    }
+
+    .settingsHeader {
+        padding: 0.8rem 1.5rem;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        border-bottom: 1px solid #e0e0e0;
+        color: #333333;
+        transition: all .2s ease;
+    }
+
+    .settingsHeader:hover, .uploadProjectHeader:hover {
+        background-color: #dcdcdc;
+        font-size: 1.1rem;
+    }
+
+    .uploadProjectHeader {
+        padding: 0.8rem 1.5rem;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        border-bottom: 1px solid #e0e0e0;
+        color: #333333;
+        transition: all .2s ease;
+    }
+
+    .contentMenuHeaderContainer {
+        padding: 0.8rem;
+        min-height: 3rem;
+        border-bottom: 2px solid #e0e0e0;
+        background-color: #f5f5f5;
+        color: #333333;
+    }
+
+    .contentMenuHeader {
+        font-size: 1.3rem;
+        margin-left: 1rem;
+        color: #333333;
+    }
+
+    .contentMenuContainer {
+        display: block;
+    }
+</style>
+<div class="outerContainer">
+    <div class="menuContainer">
+        <div class="col-3 sideMenuContainer">
+            <div class="usernameContainer">
+                <div class="username">
+                    @Model.User.Username
+                </div>
+            </div>
+            <div class="settingsHeader" onclick="showHideProjectsList()">
+                <?xml version="1.0" encoding="utf-8" ?>
+                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <title>wrench</title>
+                    <path d="M7.719 12.375l0.313-2.656-4.219-4.281c0.906-0.438 1.938-0.719 3.031-0.719 3.781 0 6.844 3.031 6.844 6.844 0 0.563-0.094 1.188-0.219 1.75l7.781 7.75c1.406 1.438 1.531 3.625 0.25 4.906s-3.5 1.188-4.938-0.25l-7.594-7.656c-0.688 0.219-1.375 0.375-2.125 0.375-3.781 0-6.844-3.094-6.844-6.875 0-1.063 0.219-2 0.625-2.906l4.344 4.406z"></path>
+                </svg>
+                General
+            </div>
+            <div class="settingsHeader" onclick="showHideCollabProjectsList()">
+                <?xml version="1.0" encoding="utf-8" ?>
+
+                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     width="20" height="20px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                    <path fill="#231F20" d="M63.714,30.516C63.347,29.594,54.448,8,31.999,8S0.651,29.594,0.284,30.516
+	                    c-0.379,0.953-0.379,2.016,0,2.969C0.651,34.406,9.55,56,31.999,56s31.348-21.594,31.715-22.516
+	                    C64.093,32.531,64.093,31.469,63.714,30.516z M31.999,40c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S36.417,40,31.999,40z" />
+                    </svg>
+                Visual
+            </div>
+            @*<div class="settingsHeader">
+                Upload Project
+            </div>*@
+        </div>
+        <div class="col-9 contentMenuContainer">
+            <div class="contentMenuHeaderContainer">
+                <div class="contentMenuHeader">Project Details</div>
+            </div>
+            <div id="settingsContentContainer"></div>
+        </div>
+    </div>
+</div>

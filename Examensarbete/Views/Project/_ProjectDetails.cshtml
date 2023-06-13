@@ -1,0 +1,92 @@
+﻿@using Examensarbete.ViewModels;
+@model ProjectDetails
+
+<style>
+    .projectDetailsContainer {
+        padding: 1.5rem;
+        font-size: 1.2rem;
+        background-color: #f5f5f5;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        color: #333333;
+    }
+
+    .projectDetailsHeader {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .projectOwner {
+        margin-bottom: 1.5rem;
+    }
+
+    .collaborators ul {
+        margin: 0;
+        padding: 0;
+    }       
+
+    .collaborators{
+        margin-bottom: 1.5rem;
+    }
+
+    .projectDetailsDatesContainer {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+    }
+
+    .createdDate,
+    .lastEditedDate {
+        font-size: 1rem;
+    }
+
+    .fileSize {
+        font-size: 1rem;
+    }
+
+    .collabListItem{
+        list-style-type: none;
+        font-size: 1rem;
+    }
+</style>
+<div class="projectDetailsContainer">
+    <div class="projectDetailsHeader">
+        @Model.Project.ProjectFileName
+    </div>
+    <div class="projectOwner">
+        Owner: @Model.User.Username
+    </div>
+    @if(Model.Collaborators.Any())
+    {
+        <div class="collaborators">
+            <div>Collaborators:</div>
+            <ul class="collabList">
+            
+                    @foreach (var collaborator in Model.Collaborators)
+                    {
+                        <li class="collabListItem">
+                            <div>
+                            @collaborator.Username
+                            </div>
+                        </li>
+                    }            
+            </ul>
+        </div>
+    }
+    <div class="projectDetailsDatesContainer">
+        <div class="createdDate">
+            Created Date: @Model.Project.CreatedDate
+        </div>
+        <div class="lastEditedDate">
+            Last Edited Date: @Model.Project.LastEditedDate
+        </div>
+    </div>
+    <div class="fileSize">
+        Size: @{
+            double kb = @Model.Project.FileSize / 1000;
+            double gb = kb / 1048576D;
+            gb = Math.Round(gb, 2);
+        } @gb GB
+    </div>
+</div>
